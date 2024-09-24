@@ -1,0 +1,37 @@
+class Solution:
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        # create a string to hold the solution
+        solution = ""
+
+        # make a variable to represent the length of the shorter word
+        word1_length = len(word1)
+        word2_length = len(word2)
+        short_word_length = min(word1_length, word2_length)
+
+        # determine which word is longer
+        if word1_length > word2_length:
+            long_word = word1
+            long_word_length = word1_length
+        
+        elif word2_length > word1_length:
+            long_word = word2
+            long_word_length = word2_length
+
+        # iterate through 0 to the length of the shorter word - 1
+        # in each loop, add word1[i] and word2[i] to the solution
+        for i in range(0, short_word_length):
+            solution += word1[i]
+            solution += word2[i]
+
+        # if all letters have been added (because the strings are of equal length), return the solution
+        if word1_length == word2_length:
+            return solution
+
+        # otherwise...
+        # isolate the end of the longer string from the length of shorter word to its end
+        word_end = long_word[short_word_length:long_word_length]
+
+        # then add that to the solution string
+        solution += word_end
+        # return the solution string
+        return solution
