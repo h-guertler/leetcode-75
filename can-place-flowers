@@ -1,0 +1,26 @@
+class Solution:
+    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+        # place a 0 on each end of the flowerbed
+        # to avoid syntax errors caused by referencing a nonexistent index
+        flowerbed.append(0)
+        flowerbed.insert(0, 0)
+
+        # set a counter variable to 0
+        # and set an index variable to 1
+        counter = 0
+        idx = 1
+
+        # while the index references a number in the original array
+        while idx < len(flowerbed) - 1:
+            # if the flowerbed at the index and at idx - 1 and at idx + 1 are 0, a flower can be placed
+            if flowerbed[idx] == 0 and flowerbed[idx - 1] == 0 and flowerbed[idx + 1] == 0:
+                # add 1 to the counter
+                counter += 1
+                # and add 2 to idx
+                idx += 2
+
+            # if a flower cannot be placed, increment the index by 1
+            else:
+                idx += 1
+        # outside the while loop, return counter >= n
+        return counter >= n
